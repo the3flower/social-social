@@ -23,6 +23,11 @@ class AuthController < ApplicationController
         end
     end
 
+    # POST /auth/logout
+    def logout
+        render json: { message: 'Logout successful' }, status: :ok
+    end
+
     private
 
     def user_params

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Authentication routes
   post '/auth/register', to: 'auth#register'
   post '/auth/login', to: 'auth#login'
+  post '/auth/logout', to: 'auth#logout'
 
   # Posts and Comments routes
   resources :posts do
