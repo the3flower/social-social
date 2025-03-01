@@ -1,6 +1,4 @@
 class AuthController < ApplicationController
-    include AuthHelpers
-
     # POST /auth/register
     def register
         user = User.new(user_params)
@@ -18,7 +16,7 @@ class AuthController < ApplicationController
 
         if user&.authenticate(params[:password])
             token = encode_token({ user_id: user.id })
-            
+
             render json: { message: 'Login successful', token: token }, status: :ok
         else
             render json: { error: 'Invalid email or password' }, status: :unauthorized

@@ -15,4 +15,11 @@ Rails.application.routes.draw do
   # Authentication routes
   post '/auth/register', to: 'auth#register'
   post '/auth/login', to: 'auth#login'
+
+  # Posts and Comments routes
+  resources :posts do
+    resources :comments, only: [:index, :create], shallow: true
+  end
+  
+  resources :comments, only: [:update, :destroy]
 end

@@ -2,13 +2,11 @@ module AuthHelpers
     SECRET_KEY = ENV['JWT_SECRET'] || 'fallback_secret_key'
 
     def encode_token(payload)
-        # JWT.encode(payload, secret_key, algorithm)
         JWT.encode(payload, SECRET_KEY, 'HS256')
     end
 
-    def decode_token()
+    def decode_token(token)
         begin
-            # JWT.decode(token, secret_key, options)
             decoded = JWT.decode(token, SECRET_KEY, 'HS256')
             decoded[0]
         rescue JWT::DecodeError
@@ -16,8 +14,8 @@ module AuthHelpers
         end
     end
 
-    def current_user()
-        token = headers['Authorization']&.split(' ')&.last
+    def current_user
+        token = request.headers['Authorization']&.split(' ')&.last
         return nil unless token
       
         decoded = decode_token(token)
@@ -26,7 +24,9 @@ module AuthHelpers
         User.find_by(id: decoded['user_id'])
     end
 
-    def authenticate!
-        error!({ error: 'Unauthorized' }, 401) unless current_user
+    def authenticate_user!
+        unless current_user
+            render json: { error: 'Unauthorized' }, status: :unauthorized
+        end
     end
 end
