@@ -6,6 +6,5 @@ class User < ApplicationRecord
 
     def generate_token
         payload = { user_id: id, exp: 24.hours.from_now.to_i }
-        
     end
 end
