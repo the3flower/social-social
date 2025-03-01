@@ -4,12 +4,14 @@ class PostsController < ApplicationController
     # GET /posts
     def index
       posts = Post.includes(:user, :comments).all
+
       render json: posts.as_json(include: { user: { only: [:id, :name] }, comments: { include: { user: { only: [:id, :name] } } } }), status: :ok
     end
   
     # GET /posts/:id
     def show
       post = Post.includes(:user, :comments).find(params[:id])
+      
       render json: post.as_json(include: { user: { only: [:id, :name] }, comments: { include: { user: { only: [:id, :name] } } } }), status: :ok
     end
   
