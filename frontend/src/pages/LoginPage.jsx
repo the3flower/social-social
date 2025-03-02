@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../services/api';
+import { loginUser } from '../services/api';
 
-const RegisterPage = () => {
-    const [name, setName] = useState('');
+const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -12,9 +11,10 @@ const RegisterPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await registerUser(name, email, password);
-            alert('Registration successful! Redirecting to login page...');
-            navigate('/login');
+            const data = await loginUser(email, password);
+            localStorage.setItem('token', data.token);
+            alert('Login successful!');
+            navigate('/posts');
         } catch (err) {
             setError(err.message);
         }
@@ -22,14 +22,8 @@ const RegisterPage = () => {
 
     return (
         <div>
-            <h2>Register</h2>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
                 <input
                     type="email"
                     placeholder="Email"
@@ -42,17 +36,17 @@ const RegisterPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </form>
             <p>
-                Already have an account?{' '}
-                <button onClick={() => navigate('/login')}>
-                    Go to Login
+                Don't have an account?{' '}
+                <button onClick={() => navigate('/register')}>
+                    Go to Register
                 </button>
             </p>
         </div>
     );
 };
 
-export default RegisterPage;
+export default LoginPage;
