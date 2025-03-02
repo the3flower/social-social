@@ -77,3 +77,5 @@ group :development, :test do
   gem "database_cleaner-active_record"
   gem "faker"
 end
+
+gem 'rack-cors', require: 'rack/cors'
