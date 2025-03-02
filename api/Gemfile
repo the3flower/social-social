@@ -62,9 +62,18 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'dotenv-rails', groups: [:development, :test]
-
-gem "grape"
+gem "dotenv-rails", groups: [ :development, :test ]
 
 gem "bcrypt"
 gem "jwt"
+
+gem "pry-byebug"
+
+group :development, :test do
+  gem "rspec-rails", "~> 6.0"
+  gem "factory_bot_rails"
+  gem "database_cleaner-active_record"
+  gem "faker"
+end
+
+gem "rack-cors", require: "rack/cors"

@@ -23,5 +23,20 @@ module Api
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.api_only = true
+
+    config.eager_load_paths << Rails.root.join("app/helpers")
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "http://localhost:5173"
+
+        resource "*",
+                 headers: :any,
+                 methods: [ :get, :post, :put, :patch, :delete, :options, :head ],
+                 credentials: true
+      end
+    end
   end
 end
