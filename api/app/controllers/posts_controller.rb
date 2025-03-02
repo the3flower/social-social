@@ -32,9 +32,9 @@ class PostsController < ApplicationController
       post = current_user.posts.new(post_params)
 
       if post.save
-        render json: post.as_json(include: { 
-          user: { only: [:id, :name] },
-          comments: { only: [:id, :content], include: { user: { only: [:id, :name] } } }
+        render json: post.as_json(include: {
+          user: { only: [ :id, :name ] },
+          comments: { only: [ :id, :content ], include: { user: { only: [ :id, :name ] } } }
       }), status: :created
       else
         render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
