@@ -64,8 +64,6 @@ end
 
 gem "dotenv-rails", groups: [ :development, :test ]
 
-gem "grape"
-
 gem "bcrypt"
 gem "jwt"
 
