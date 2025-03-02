@@ -1,6 +1,7 @@
 FactoryBot.define do
     factory :post do
-      content { "Sample post content" }
-      association :user
+        content { Faker::Lorem.sentence }
+
+        association :user
     end
   end
