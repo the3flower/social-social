@@ -5,13 +5,24 @@ class PostsController < ApplicationController
     def index
       posts = Post.includes(:user, :comments).all
 
-      render json: posts.as_json(include: { user: { only: [ :id, :name ] }, comments: { include: { user: { only: [ :id, :name ] } } } }), status: :ok
+      render json: posts.as_json(include: {
+        user: { only: [ :id, :name ] },
+        comments: {
+          include: { user: { only: [ :id, :name ] } },
+          only: [ :id, :content ]
+        }
+      }), status: :ok
     end
 
     # GET /posts/:id
     def show
       post = Post.includes(:user, :comments).find(params[:id])
-      render json: post.as_json(include: { user: { only: [ :id, :name ] }, comments: { include: { user: { only: [ :id, :name ] } } } }), status: :ok
+      render json: post.as_json(include: {
+        user: { only: [ :id, :name ] },
+        comments: {
+          include: { user: { only: [ :id, :name ] } }
+        }
+      }), status: :ok
     rescue ActiveRecord::RecordNotFound
         render json: { error: "Post not found" }, status: :not_found
     end
@@ -21,7 +32,9 @@ class PostsController < ApplicationController
       post = current_user.posts.new(post_params)
 
       if post.save
-        render json: post, status: :created
+        render json: post.as_json(include: {
+          user: { only: [ :id, :name ] }
+        }), status: :created
       else
         render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
       end
