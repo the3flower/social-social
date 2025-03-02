@@ -26,6 +26,6 @@ module Api
 
     config.api_only = true
 
-    config.eager_load_paths << Rails.root.join('app/helpers')
+    config.eager_load_paths << Rails.root.join("app/helpers")
   end
 end

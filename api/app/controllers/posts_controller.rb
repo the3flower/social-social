@@ -11,8 +11,9 @@ class PostsController < ApplicationController
     # GET /posts/:id
     def show
       post = Post.includes(:user, :comments).find(params[:id])
-
       render json: post.as_json(include: { user: { only: [ :id, :name ] }, comments: { include: { user: { only: [ :id, :name ] } } } }), status: :ok
+    rescue ActiveRecord::RecordNotFound
+        render json: { error: "Post not found" }, status: :not_found
     end
 
     # POST /posts
@@ -35,6 +36,8 @@ class PostsController < ApplicationController
       else
         render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
       end
+    rescue ActiveRecord::RecordNotFound
+        render json: { error: "Post not found" }, status: :not_found
     end
 
     # DELETE /posts/:id
@@ -42,6 +45,8 @@ class PostsController < ApplicationController
       post = current_user.posts.find(params[:id])
       post.destroy
       render json: { message: "Post deleted successfully" }, status: :ok
+    rescue ActiveRecord::RecordNotFound
+        render json: { error: "Post not found" }, status: :not_found
     end
 
     private
