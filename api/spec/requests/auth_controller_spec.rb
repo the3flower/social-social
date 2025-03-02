@@ -34,6 +34,19 @@ RSpec.describe AuthController, type: :request do
         expect(JSON.parse(response.body)).to include("errors")
       end
     end
+
+    context 'when email is already taken' do
+      before { create(:user, email: 'duplicate@example.com') }
+
+      it 'does not allow duplicate email registration' do
+          expect {
+              post '/auth/register', params: { name: 'Test', email: 'duplicate@example.com', password: 'password' }
+          }.not_to change(User, :count)
+
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(JSON.parse(response.body)).to include('errors')
+      end
+    end
   end
 
   describe 'POST /auth/login' do
