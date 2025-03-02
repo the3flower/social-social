@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/api';
+import '../assets/auth.css';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -21,9 +22,9 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
+        <div className="auth-container">
             <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="auth-form">
                 <input
                     type="email"
                     placeholder="Email"

@@ -21,9 +21,9 @@ const RegisterPage = () => {
     };
 
     return (
-        <div>
+        <div className="auth-container">
             <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="auth-form">
                 <input
                     type="text"
                     placeholder="Name"
