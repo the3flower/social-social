@@ -1,69 +1,49 @@
-# Social Media Mini Project
+👋 Hi! I'm Bill, a software engineer with a passion for building cool and interesting projects. I love creating tech solutions that can help drive a business forward. This repo showcases a full-stack social media website I've been working on. Ready to dive in?
+💡 What's the idea behind this project?
 
-## Introduction
-Hi, I'm Bill, a passionate software engineer who loves exploring tech-driven business solutions. This repository is a small project where I built a simple social media application. It was a great learning experience, and I'm excited to share it with you!
+I wanted to learn and experiment with building a full-stack Ruby on Rails application. The goal was to start from scratch, using simple database requirements, and work my way through implementation and testing.
+What will you find in this repo?
 
-## Project Idea
-The goal of this project was to create a basic social media platform with essential features such as posting and commenting. I aimed to build it as a standalone, full-stack application using modern web development tools.
+    Requirements and Design – I’ll share the initial simple tasks and design ideas before jumping into development.
+    Tech Stack and Tools – A rundown of the technologies used in this project.
+    Project Structure – A look into the folder and file organization.
+    Setup Guide – Instructions for setting up the project (and if anything doesn’t work, feel free to let me know!).
+    How to Test – Steps to test the project.
+    Future Improvements – My thoughts on how to enhance the project and some notes for the future.
 
-## Agenda
+📝 Requirements and Design
+Project Requirements
 
-### How I Started
-I began by defining the project's requirements and designing the database. I focused on the core features: allowing users to post content and comment on posts. Below is a quick overview of my process:
-- Asked myself about the requirements and tools needed.
-- Decided on features: user authentication, post creation, commenting, and basic UI.
-- Designed the database (I'll add an image of the schema later).
+    Users can register with their name, email, and password.
+    Users can log in with their registered account.
+    Users can post text.
+    Users can comment on posts.
 
-### Tools I Used
-- **Backend:** Ruby on Rails (API only)
-- **Frontend:** React
-- **Database:** SQLite (for development)
-- **Styling:** Basic CSS
-- **Testing:** RSpec (for backend) and manual testing with Postman
+Database Design
 
-### Project Setup
+(I'll add a database design image here)
+🛠️ Tech Stack and Tools
 
-#### Backend
-```bash
-cd api
-bundle install
-rails db:setup
-rails server
+    Backend: Ruby on Rails (API only)
+    Frontend: React
+    Database: SQLite (for development)
+    Styling: Basic CSS
+    Testing: RSpec (for backend) and manual testing with Postman
 
-```
+📂 Project Structure
+Backend Structure
 
+api/ - Contains all backend components
 
+    api/app/controllers: Business logic for the Rails app
+    api/app/helpers: Custom helper methods, like auth_helpers.rb
+    api/config/initializers: Custom initializers, e.g., wrap_parameters.rb
+    api/spec: For tests
 
+Frontend Structure
 
+frontend/ - Contains all frontend components
 
-
-api folder should cd to api folder for api(backend part)
-`cd api`
-
-install gem to use gem in this backend
-`bundle install`
-
-generate JWT secret key and put to `.env` file
-`rails secret`
-
-run test
-`bundle exec rspec`
-specific file
-`bundle exec rspec spec/requests/auth_controller_spec.rb`
-readable test output
-`bundle exec rspec spec/requests/posts_controller_spec.rb -f doc`
-
-run backend
-`rails s`
-
-frontend folder for frontend part, navigate to frontend folder
-`cd frontend`
-
-install dependencies of frontend (in this case I used `yarn`)
-`yarn install`
-
-run frontend
-`yarn dev`
-
-** you should run backend(api) and frontend in the same time!
-
+    frontend/src/components: Components like buttons, forms, cards
+    frontend/src/pages: Represents the web pages
+    frontend/src/services: For API/backend calls
