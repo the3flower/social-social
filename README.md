@@ -48,7 +48,7 @@ I wanted to learn and experiment with building a full-stack Ruby on Rails applic
 
 **api/** - Contains all backend components
 
-**api/app/controllers/:** Business logic for the Rails app
+**api/app/controllers/:** Logic for the Rails app
     
 **api/app/helpers/:** Custom helper methods, like auth_helpers.rb
     
