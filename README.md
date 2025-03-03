@@ -12,7 +12,7 @@ I wanted to learn and experiment with building a full-stack Ruby on Rails applic
 
 **Project Structure** – A look into the folder and file organization.
 
-**Setup Guide** – Instructions for setting up the project (and if anything doesn’t work, feel free to let me know!).
+**Setup Guide** – Instructions for setting up the project (and if anything doesn’t work, feel free to let me know).
 
 **How to Test** – Steps to test the project.
 
